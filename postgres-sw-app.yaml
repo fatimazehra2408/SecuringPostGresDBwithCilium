@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-server
+spec:
+  selector:
+    matchLabels:
+      app: postgres-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres-server
+    spec:
+      containers:
+      - name: postgres
+        image: postgres
+        ports:
+        - containerPort: 9042
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-svc
+  labels:
+    app: postgres-server
+spec:
+  ports:
+  - port: 9042
+    name: postgres-port
+    targetPort: 9042
+    protocol: TCP
+  selector:
+    app: postgres-server
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: current-emp
+spec:
+  selector:
+    matchLabels:
+      app: current-emp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: current-emp
+    spec:
+      containers:
+      - name: current-emp
+        image: postgres
+        command: ["sleep"]
+        args: ["30000"]
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: total-emp
+spec:
+  selector:
+    matchLabels:
+      app: total-emp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: total-emp
+    spec:
+      containers:
+      - name: total-emp
+        image: postgres
+        command: ["sleep"]
+        args: ["30000"]
