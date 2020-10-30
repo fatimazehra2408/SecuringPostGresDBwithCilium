@@ -38,19 +38,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: current-emp
+  name: empire-hq
 spec:
   selector:
     matchLabels:
-      app: current-emp
+      app: empire-hq
   replicas: 1
   template:
     metadata:
       labels:
-        app: current-emp
+        app: empire-hq
     spec:
       containers:
-      - name: current-emp
+      - name: empire-hq
         image: postgres
         command: ["sleep"]
         args: ["30000"]
@@ -58,19 +58,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: total-emp
+  name: empire-outpost
 spec:
   selector:
     matchLabels:
-      app: total-emp
+      app: empire-outpost
   replicas: 1
   template:
     metadata:
       labels:
-        app: total-emp
+        app: empire-outpost
     spec:
       containers:
-      - name: total-emp
+      - name: empire-outpost
         image: postgres
         command: ["sleep"]
         args: ["30000"]
