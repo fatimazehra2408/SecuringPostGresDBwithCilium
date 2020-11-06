@@ -2,42 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-server
-spec:
-  selector:
-    matchLabels:
-      app: postgres-server
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: postgres-server
-    spec:
-      containers:
-      - name: postgres
-        image: postgres
-        ports:
-        - containerPort: 5432
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-svc
-  labels:
-    app: postgres-server
-spec:
-  ports:
-  - port: 5432
-    name: postgres-port
-    targetPort: 5432
-    protocol: TCP
-  selector:
-    app: postgres-server
-  clusterIP: None
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: empire-hq
 spec:
   selector:
