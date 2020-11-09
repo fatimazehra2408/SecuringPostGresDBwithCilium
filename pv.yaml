@@ -6,7 +6,7 @@
         type: local
         app: post-server
     spec:
-      storageClassName: manual
+      storageClassName: standard
       capacity:
         storage: 1G
       accessModes:
