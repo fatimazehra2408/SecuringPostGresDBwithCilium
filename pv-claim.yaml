@@ -5,7 +5,7 @@
       labels:
         app: post-server
     spec:
-      storageClassName: manual
+      storageClassName: standard
       accessModes:
         - ReadWriteMany
       resources:
